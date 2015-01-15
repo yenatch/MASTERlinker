@@ -36,6 +36,9 @@ class seen():
 		nick = nick.replace(" ", "")
 		nick = nick.lower()
 
+		# the db only knows ascii
+		nick = nick.decode(errors='ignore')
+
 		#look for nick in db
 		self.cursor.execute("SELECT last_time FROM seen WHERE nickname=?", (nick,))
 		row = self.cursor.fetchone()
